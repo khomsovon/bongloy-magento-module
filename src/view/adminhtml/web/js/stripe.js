@@ -97,7 +97,7 @@ define([
       var state = self.scriptLoaded;
 
       $('body').trigger('processStart');
-      require(['https://js.stripe.com/v3/'], function () {
+      require(['https://js.bongloy.com/v3/'], function () {
         state(true);
         self.stripe = window.Stripe(self.publishableKey);
         self.stripeCardElement = self.stripe.elements();

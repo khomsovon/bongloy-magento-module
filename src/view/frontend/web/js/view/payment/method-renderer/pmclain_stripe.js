@@ -12,7 +12,7 @@ define(
     'Magento_Checkout/js/model/quote',
     'Magento_Ui/js/modal/alert',
     'Magento_Customer/js/customer-data',
-    'https://js.stripe.com/v3/'
+    'https://js.bongloy.com/v3/'
   ],
   function (
       $,
@@ -43,7 +43,7 @@ define(
 
       initialize: function() {
         this._super();
-        this.stripe = Stripe(this.getPublishableKey());
+        this.stripe = Bongloy.setPublishableKey(this.getPublishableKey());
         this.vaultEnabler = new VaultEnabler();
         this.vaultEnabler.setPaymentCode(this.getVaultCode());
       },
@@ -113,22 +113,52 @@ define(
           self.isPlaceOrderActionAllowed(true);
         });
       },
-
       createToken: function() {
-        var self = this,
-          defer = $.Deferred();
 
-        self.stripe.createToken(self.stripeCard, this.getAddressData()).then(function(response) {
-          if (response.error) {
-            defer.reject(response.error.message);
-          }else {
-            self.token = response.token;
-            defer.resolve({});
-          }
-        });
+        //var self = this;
+        //var defer = $.Deferred();
 
-        return defer.promise();
+        //var expiry = document.querySelector('[data-name="cardExpiry"]').value.split("/");
+        //var cardObject = {
+          //number:     document.querySelector('[data-name="cardNumber"]').value,
+          //exp_month:  expiry[0],
+          //exp_year:   expiry[1],
+          //cvc:        document.querySelector('[data-name="cardCVC"]').value
+        //};
+
+        //Stripe.createToken('card', cardObject, function(statusCode, response) {
+          //var errorMessages = document.querySelector('[data-name="errorMessages"]');
+          //errorMessages.classList.remove('d-block');
+          //errorMessages.classList.add('d-none');
+
+          //if (statusCode === 201) {
+            //document.querySelector('[data-name="cardToken"]').value = response.id;
+            //checkoutForm.submit();
+          //}
+          //else {
+            //document.querySelector("input[type=submit]").removeAttribute('disabled');
+            //errorMessages.classList.remove('d-none');
+            //errorMessages.classList.add('d-block');
+            //errorMessages.innerHTML = response.error.message;
+          //}
       },
+
+
+      //createToken: function() {
+        //var self = this,
+          //defer = $.Deferred();
+
+        //self.stripe.createToken(self.stripeCard, this.getAddressData()).then(function(response) {
+          //if (response.error) {
+            //defer.reject(response.error.message);
+          //}else {
+            //self.token = response.token;
+            //defer.resolve({});
+          //}
+        //});
+
+        //return defer.promise();
+      //},
 
       createSource: function () {
         var self = this,

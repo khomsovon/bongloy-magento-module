@@ -10,7 +10,8 @@ define([
   'Magento_Checkout/js/model/quote',
   'Magento_Ui/js/modal/alert',
   'Magento_Customer/js/customer-data',
-  'https://js.stripe.com/v3/'
+  'https://js.bongloy.com/v3/'
+
 ], function (
     $,
     VaultComponent,
@@ -33,7 +34,7 @@ define([
 
     initialize: function() {
       this._super();
-      this.stripe = Stripe(this.getPublishableKey());
+      this.stripe = Bongloy.setPublishableKey(this.getPublishableKey());
     },
 
     placeOrder: function (data, event) {
