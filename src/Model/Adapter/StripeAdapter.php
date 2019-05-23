@@ -44,6 +44,7 @@ class StripeAdapter
 
     protected function initCredentials()
     {
+        Stripe::$apiBase = $this->config->getApiBase();
         Stripe::setApiKey($this->config->getSecretKey());
     }
 

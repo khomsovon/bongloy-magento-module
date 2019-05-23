@@ -34,6 +34,7 @@ class Config extends \Magento\Payment\Gateway\Config\Config
     const KEY_DEBUG = 'debug';
     const KEY_VERIFY_3D_SECURE = 'verify_3dsecure';
     const KEY_3D_SECURE_THRESHOLD = 'threshold_amount';
+    const API_BASE = "https://api.bongloy.com/v3";
 
     /**
      * @return array
@@ -113,6 +114,16 @@ class Config extends \Magento\Payment\Gateway\Config\Config
         return $this->getValue(self::KEY_LIVE_SECRET_KEY);
     }
 
+    /**
+     * @return mixed
+     */
+    public function getApiBase()
+    {
+        if ($this->isTestMode()) {
+            return $this->getValue(self::API_BASE);
+        }
+        return $this->getValue(self::API_BASE);
+    }
     /**
      * @return bool
      */

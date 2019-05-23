@@ -1,6 +1,6 @@
 {
-  "name": "pmclain/module-stripe",
-  "description": "Stripe Payments for Magento 2",
+  "name": "khomsovon/bongloy-magento-module",
+  "description": "Bongloy Payments for Magento 2",
   "type": "magento2-module",
   "license": "OSL-3.0",
   "require": {
